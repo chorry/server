@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\App\Modules\Sentry\Interfaces\Http\Handler;
 
-use App\Application\HTTP\GzippedStreamFactory;
+use App\Application\HTTP\StreamFactory;
 use Modules\Sentry\Application\EventHandlerInterface;
 use Modules\Sentry\Interfaces\Http\Handler\EventHandler;
 use Nyholm\Psr7\Response;
@@ -21,7 +21,7 @@ class EventHandlerTest extends TestCase
 {
     public function testHandleGzippedEventData()
     {
-        $factory = new GzippedStreamFactory;
+        $factory = new StreamFactory;
         $eventHandler = $this->createMock(EventHandlerInterface::class);
         $commandBus = $this->createMock(CommandBusInterface::class);
 
@@ -46,9 +46,9 @@ class EventHandlerTest extends TestCase
         $handler->handle($serverRequest, fn(ServerRequestInterface $request) => new Response());
     }
 
-    public function testHandlePLaintextEventData()
+    public function testHandlePlaintextEventData()
     {
-        $factory = new GzippedStreamFactory;
+        $factory = new StreamFactory;
         $eventHandler = $this->createMock(EventHandlerInterface::class);
         $commandBus = $this->createMock(CommandBusInterface::class);
 

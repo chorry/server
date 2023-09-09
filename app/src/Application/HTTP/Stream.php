@@ -6,7 +6,7 @@ namespace App\Application\HTTP;
 
 use Psr\Http\Message\StreamInterface;
 
-final class GzippedStream
+final class Stream
 {
     public function __construct(
         private readonly StreamInterface $stream,
