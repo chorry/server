@@ -19,8 +19,15 @@ use Spiral\Http\ResponseWrapper;
 
 class EventHandlerTest extends TestCase
 {
+    /**
+     * @requires extension zlib
+     */
     public function testHandleGzippedEventData()
     {
+        if (!extension_loaded('zlib')) {
+            $this->markTestSkipped('This test requires `zlib` extension');
+        }
+
         $factory = new StreamFactory;
         $eventHandler = $this->createMock(EventHandlerInterface::class);
         $commandBus = $this->createMock(CommandBusInterface::class);
